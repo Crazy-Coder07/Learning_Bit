@@ -8,11 +8,12 @@ import Pagenotfound from './pages/Pagenotfound';
 import Privecy from './pages/Privecy';
 import MyCourse from './pages/MyCourse';
 import Profile from './pages/Profile';
-
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <>
+    <Toaster/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
