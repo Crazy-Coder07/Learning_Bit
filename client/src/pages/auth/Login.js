@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate,Link } from "react-router-dom";
-import Layout from '../components/Layout/Layout';
-import img1 from '../components/images/bcg.jpg';
+import Layout from '../../components/Layout/Layout';
+import img1 from '../components/images/bcg1.jpg';
 import axios from 'axios';
 import toast from "react-hot-toast";
 
