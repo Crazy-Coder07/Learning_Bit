@@ -14,10 +14,10 @@ exports.registerController = async (req, res) => {
                 error,
             })
         }
-        const exisitingUser = await userModel.findOne({ email: req.body.email });
+        let user = await userModel.findOne({ email: req.body.email });
         //validation
-        if (exisitingUser) {
-            return res.status(200).send({
+        if (user) {
+            return res.status(409).send({
                 success: false,
                 message: "User Already Exists Please Login",
             });
@@ -28,7 +28,7 @@ exports.registerController = async (req, res) => {
         req.body.password = hashedPassword;
 
         // saving to database
-        const user = new userModel(req.body);
+        user = new userModel(req.body);
         await user.save();
         return res.status(201).send({
             success: true,
@@ -60,7 +60,7 @@ exports.loginController = async (req, res) => {
         const user = await userModel.findOne({ email: req.body.email });
         //validation
         if (!user) {
-            return res.status(200).send({
+            return res.status(401).send({
                 success: false,
                 message: "User Not Register Please Sign Up First",
             });
@@ -72,7 +72,7 @@ exports.loginController = async (req, res) => {
             user.password
         );
         if (!comparePassword) {
-            return res.status(500).send({
+            return res.status(401).send({
                 success: false,
                 message: "Invalid Credentials",
             });
@@ -81,17 +81,17 @@ exports.loginController = async (req, res) => {
             expiresIn: "30d",
         });
 
-        return res.status(201).send({
+        return res.status(200).send({
             success: true,
-            message: "User Sign Successfully",
+            message: "User Sign In Successfully",
             token,
-            user,
+            user
         });
     }
     catch (error) {
         res.status(500).send({
             success: false,
-            message: "Error In Registration API",
+            message: "Error In Login API",
             error,
         })
     }

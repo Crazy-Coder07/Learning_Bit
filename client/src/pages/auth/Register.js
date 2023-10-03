@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { useNavigate,Link } from "react-router-dom";
+import {Link } from "react-router-dom";
 import Layout from '../../components/Layout/Layout';
-import img1 from '../components/images/bcg.jpg';
-import axios from 'axios';
-import toast from "react-hot-toast";
+import img1 from "../../components/images/bcg.jpg";
+import { handleRegister } from '../../services/authService';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -12,30 +11,9 @@ const Register = () => {
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
 
-  const navigate = useNavigate();
 
   const registrationform = async (e) => {
-    e.preventDefault();
-    try {
-      const { data } = await axios.post('http://localhost:8080/api/v1/auth/register', {
-        name,
-        email,
-        password,
-        phone,
-        address,
-      });
-      if(password.length<4){
-        toast.error('Password must be at least 4 characters');
-      }
-      else if (data && data.success) {
-        toast.success("Registration successful");
-        navigate("/login");
-      }else if (data && data.message === "User Already Exists Please Login") {
-        toast.success("User already registered. Please Login.");
-      }
-    }catch (error) {
-        toast.error('Something went wrong');
-    }
+    return handleRegister(e, name,email, password,phone, address);
   };
   
 

@@ -1,33 +1,15 @@
 import React, { useState } from 'react';
-import { useNavigate,Link } from "react-router-dom";
+import {Link } from "react-router-dom";
 import Layout from '../../components/Layout/Layout';
-import img1 from '../components/images/bcg1.jpg';
-import axios from 'axios';
-import toast from "react-hot-toast";
+import img1 from "../../components/images/bcg1.jpg";
+import { handleLogin} from './../../services/authService';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const navigate = useNavigate();
-
   const registrationform = async (e) => {
-    e.preventDefault();
-    try {
-      const { data } = await axios.post('http://localhost:8080/api/v1/auth/login', {
-        email,
-        password,
-      });
-      if (data && data.success) {
-        toast.success("Registration successful");
-        localStorage.setItem("token", data.token);
-        navigate("/");
-      }else if (data && data.message === "User Not Register Please Sign Up First") {
-        toast.success("User already registered. Please Login.");
-      }
-    }catch (error) {
-        toast.error('Something went wrong');
-    }
+     return handleLogin(e,email,password);
   };
   
 
