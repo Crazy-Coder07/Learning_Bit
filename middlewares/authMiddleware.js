@@ -2,6 +2,14 @@ const JWT = require("jsonwebtoken");
 
 module.exports = async (req, res, next) => {
   try {
+    // Check if the "Authorization" header exists
+    if (!req.headers["authorization"]) {
+      return res.status(401).send({
+        success: false,
+        message: "Authorization header missing",
+      });
+    }
+
     const token = req.headers["authorization"].split(" ")[1];
     JWT.verify(token, process.env.JWT_SECRET, (err, decode) => {
       if (err) {
@@ -19,7 +27,7 @@ module.exports = async (req, res, next) => {
     return res.status(401).send({
       success: false,
       error,
-      message: "Auth Failedd",
+      message: "Auth Failed",
     });
   }
 };
