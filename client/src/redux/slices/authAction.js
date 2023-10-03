@@ -29,6 +29,7 @@ export const userLogin = createAsyncThunk(
   }
 );
 
+
 // here userRegister are actions
 export const userRegister = createAsyncThunk(
   "auth/register",
@@ -46,6 +47,26 @@ export const userRegister = createAsyncThunk(
         return rejectWithValue(error.response.data.message);
       } else {
         toast.error(error.message)
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);
+
+// for current user 
+export const getCurrentUser = createAsyncThunk(
+  "auth/getCurrentUser",
+  async ({ rejectWithValue }) => {
+    try {
+      const {data}= await API.get("/auth/current-user");
+      if (data?.success) {
+        return data;
+      }
+    } catch (error) {
+      console.log(error);
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
         return rejectWithValue(error.message);
       }
     }

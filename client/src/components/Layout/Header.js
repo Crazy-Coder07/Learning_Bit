@@ -1,14 +1,21 @@
 import React, { useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
 
 const Header = () => {
   // State to track the mobile menu's open/closed state
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   // Function to toggle the mobile menu
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+
+  // Function to handle logout
+  const logoutfun = () => {
+    localStorage.clear();
+    navigate("/login");
+  }
 
   return (
     <div className='bg-blue-500 p-2 md:p-4 lg:p-4 font-bold text-white'>
@@ -29,10 +36,21 @@ const Header = () => {
           <NavLink to="/home">Home</NavLink>
           <NavLink to="/mycourse">My Course</NavLink>
           <NavLink to="/profile">Profile</NavLink>
-          <NavLink to="/login">Log in</NavLink>
-          <NavLink to="/register">
-            <div className='h-10 w-24 text-center p-1 rounded-lg bg-slate-50 text-black'>Sign Up</div>
-          </NavLink>
+          <NavLink to="/becomeinstructor">Become Teacher</NavLink>
+          {
+            localStorage.getItem("token")
+              ? <>
+                <div onClick={logoutfun}>
+                  <div className='h-10 w-24 text-center p-1 rounded-lg bg-red-500 text-white cursor-pointer'>Log Out</div>
+                </div>
+              </>
+              : <>
+                <NavLink to="/login">Log in</NavLink>
+                <NavLink to="/register">
+                  <div className='h-10 w-24 text-center p-1 rounded-lg bg-slate-50 text-black'>Sign Up</div>
+                </NavLink>
+              </>
+          }
         </div>
       </div>
     </div>

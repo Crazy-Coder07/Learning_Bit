@@ -9,6 +9,9 @@ import Privecy from './pages/Privecy';
 import MyCourse from './pages/MyCourse';
 import Profile from './pages/Profile';
 import { Toaster } from "react-hot-toast";
+import ProtectedRoute from './components/Routes/protectedRoute';
+import PublicRoute from './components/Routes/publicRoute';
+import Instructorform from './pages/instructor/becomeInstructor';
 
 function App() {
   return (
@@ -17,10 +20,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/mycourse" element={<MyCourse/>} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
+        <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+        <Route path="/mycourse" element={<ProtectedRoute><MyCourse/></ProtectedRoute>} />
+        <Route path="/profile" element={<ProtectedRoute><Profile/></ProtectedRoute>} />
+        <Route path="/becomeinstructor" element={<ProtectedRoute><Instructorform/></ProtectedRoute>} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/privecy" element={<Privecy />} />
