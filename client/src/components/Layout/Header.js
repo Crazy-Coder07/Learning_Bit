@@ -36,7 +36,7 @@ const Header = () => {
           <NavLink to="/home">Home</NavLink>
           <NavLink to="/mycourse">My Course</NavLink>
           <NavLink to="/profile">Profile</NavLink>
-          <NavLink to="/becomeinstructor">Become Teacher</NavLink>
+          <NavLink to="/homeinstructor">Become Teacher</NavLink>
           {
             localStorage.getItem("token")
               ? <>

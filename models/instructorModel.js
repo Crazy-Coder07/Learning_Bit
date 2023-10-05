@@ -4,8 +4,9 @@ const instructorSchema = new mongoose.Schema(
   {
     role: {
       type: String,
+      enum: ["Applied For Instructor", "Instructor"],
+      default: "Applied For Instructor", // Default role is "Applied For Instructor"
       required: true,
-      default: "instructor", // Default role is "instructor"
     },
     name: {
       type: String,
