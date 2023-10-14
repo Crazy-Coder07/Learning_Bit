@@ -13,6 +13,7 @@ import ProtectedRoute from './components/Routes/protectedRoute';
 import PublicRoute from './components/Routes/publicRoute';
 import HomeInstructor from './pages/instructor/HomeInstructor';
 import ApplyInstructor from './pages/instructor/ApplyInstructor';
+import Updateprofile from './pages/updateprofile';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
         <Route path="/mycourse" element={<ProtectedRoute><MyCourse/></ProtectedRoute>} />
         <Route path="/profile" element={<ProtectedRoute><Profile/></ProtectedRoute>} />
+        <Route path="/profile-updateprofile" element={<ProtectedRoute><Updateprofile/></ProtectedRoute>} />
         <Route path="/homeinstructor" element={<HomeInstructor/>} />
         <Route path="/applyinstructor" element={<ProtectedRoute><ApplyInstructor/></ProtectedRoute>} />
         <Route path="/about" element={<About />} />

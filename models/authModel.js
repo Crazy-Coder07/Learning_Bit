@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+
 const userSchema = new mongoose.Schema(
   {
     role: {
@@ -31,6 +32,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "address is required"],
     },
+    // photo: {
+    //   data: Buffer,
+    //   contentType: String,
+    // },
   },
   { timestamps: true }
 );

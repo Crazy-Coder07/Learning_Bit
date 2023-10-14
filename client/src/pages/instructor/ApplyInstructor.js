@@ -46,7 +46,7 @@ const ApplyInstructor = () => {
                 <div className="max-w-md mx-auto">
                     <h1 className="text-4xl font-bold mb-4 text-center pt-10">Fill the instructor form</h1>
                     <form onSubmit={handleSubmit}>
-                        <div className="mb-4 bg-white py-8 px-5 rounded">
+                        <div className="mb-4 bg-white py-8 px-5 rounded-lg">
                             <label htmlFor="name" className="block text-sm font-semibold mb-3">
                                 Name:
                             </label>
@@ -61,7 +61,7 @@ const ApplyInstructor = () => {
                                 required
                             />
                         </div>
-                        <div className="mb-4 bg-white py-8 px-5 rounded">
+                        <div className="mb-4 bg-white py-8 px-5 rounded-lg">
                             <label htmlFor="email" className="block text-sm font-semibold mb-3">
                                 Email:
                             </label>
@@ -76,7 +76,7 @@ const ApplyInstructor = () => {
                                 required
                             />
                         </div>
-                        <div className="mb-4 bg-white py-8 px-5 rounded">
+                        <div className="mb-4 bg-white py-8 px-5 rounded-lg">
                             <label htmlFor="phone" className="block text-sm font-semibold mb-3">
                                 Phone:
                             </label>
@@ -91,7 +91,7 @@ const ApplyInstructor = () => {
                                 required
                             />
                         </div>
-                        <div className="mb-4 bg-white py-8 px-5 rounded">
+                        <div className="mb-4 bg-white py-8 px-5 rounded-lg">
                             <label htmlFor="address" className="block text-sm font-semibold mb-3">
                                 Address:
                             </label>
@@ -105,7 +105,7 @@ const ApplyInstructor = () => {
                                 required
                             />
                         </div>
-                        <div className="mb-4 bg-white py-8 px-5 rounded">
+                        <div className="mb-4 bg-white py-8 px-5 rounded-lg">
                             <label htmlFor="bio" className="block text-sm font-semibold mb-3">
                                 Bio:
                             </label>
@@ -119,7 +119,7 @@ const ApplyInstructor = () => {
                                 required
                             />
                         </div>
-                        <div className="mb-4 bg-white py-8 px-5 rounded">
+                        <div className="mb-4 bg-white py-8 px-5 rounded-lg">
                             <label htmlFor="subjects" className="block text-sm font-semibold mb-3">
                                 Subjects of Interest:
                             </label>
@@ -134,7 +134,7 @@ const ApplyInstructor = () => {
                                 required
                             />
                         </div>
-                        <div className="mb-4 bg-white py-8 px-5 rounded">
+                        <div className="mb-4 bg-white py-8 px-5 rounded-lg">
                             <label htmlFor="experience" className="block text-sm font-semibold mb-3">
                                 Experience in years:
                             </label>
@@ -149,7 +149,7 @@ const ApplyInstructor = () => {
                                 required
                             />
                         </div>
-                        <div className="mb-4 bg-white py-8 px-5 rounded">
+                        <div className="mb-4 bg-white py-8 px-5 rounded-lg">
                             <label htmlFor="qualifications" className="block text-sm font-semibold mb-3">
                                 Highest Qualifications:
                             </label>
@@ -167,7 +167,7 @@ const ApplyInstructor = () => {
                         <div className="text-center">
                             <button
                                 type="submit"
-                                className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 mb-8"
+                                className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 mb-8"
                             >
                                 Submit
                             </button>
