@@ -5,7 +5,7 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
     "./node_modules/tw-elements/dist/js/**/*.js"
   ],
-  safelist: ['animate-[slide-right_1s_ease-in-out]'],
+  safelist: ['animate-[slide-right_1s_ease-in-out]', 'animate-[jiggle_0.5s]'],
   theme: {
     extend: {},
   },

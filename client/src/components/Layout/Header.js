@@ -34,9 +34,9 @@ const Header = () => {
         {/* Navigation links */}
         <div className={`md:flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 ${isMobileMenuOpen ? 'block' : 'hidden'}`}>
           <NavLink to="/home">Home</NavLink>
-          <NavLink to="/mycourse">My Course</NavLink>
+          <NavLink to="/mycourse">MyCourse</NavLink>
           <NavLink to="/profile">Profile</NavLink>
-          <NavLink to="/homeinstructor">Become Teacher</NavLink>
+          <NavLink to="/homeinstructor">BecomeTeacher</NavLink>
           {
             localStorage.getItem("token")
               ? <>

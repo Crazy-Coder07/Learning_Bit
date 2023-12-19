@@ -115,44 +115,7 @@ exports.currentuserControllers = async (req, res) => {
 }
 
 // update profile
-exports.updateprofileControllers=async (req,res)=>{
-    try{
-    //   const {name,phone,address}=req.body;
-    //   const {photo}=req.files;
-    //   if(photo && photo.size >1000000){
-    //     return res.status(500).send({
-    //         success:false,
-    //         message:"photo size should be less then 1MB"
-    //     })
-    //   }
-    //   let updated=new authModel({...req.body});
-    //   if(photo){
-    //     updated.photo.data=fs.readFileSync(photo.path);
-    //     updated.photo.contentType=photo.type;
-    //   }
-    const { name,phone ,address } = req.body;
-    const user = await userModel.findById(req.user._id);
-    
-    const updatedUser = await userModel.findByIdAndUpdate(
-      req.user._id,
-      {
-        name: name || user.name,
-        password: hashedPassword || user.password,
-        phone: phone || user.phone,
-        address: address || user.address,
-      },
-      { new: true }
-    );
-      res.status(201).send({
-        success: true,
-        message:"Profile updated successfully",
-        updated,
-      })
-    }catch(error){
-        res.status(500).send({
-            success: false,
-            message: "Error In profileUpdate User API",
-            error,
-        })
-    }
-}
+exports.updateprofileControllers = async (req, res) => {
+     
+  };
+  

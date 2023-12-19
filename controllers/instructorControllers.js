@@ -1,5 +1,6 @@
 const userModel = require("../models/authModel"); 
 const instructorModel = require("../models/instructorModel"); 
+
 exports.becomeinstructorController = async (req, res) => {
     try {
         const { name, email, phone, address, bio, subjects, experience, qualifications } = req.body;
