@@ -32,10 +32,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "address is required"],
     },
-    // photo: {
-    //   data: Buffer,
-    //   contentType: String,
-    // },
+    photo: {
+      data: Buffer,
+      contentType: String,
+    },
   },
   { timestamps: true }
 );

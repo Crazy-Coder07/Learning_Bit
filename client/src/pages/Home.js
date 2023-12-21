@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <Layout>
       <div>
-        {user.name}
+        {user?user.name:"not logged in"}
       </div>
     </Layout>
   );
