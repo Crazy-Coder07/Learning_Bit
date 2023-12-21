@@ -3,10 +3,7 @@ import { Link } from "react-router-dom";
 import Layout from '../../components/Layout/Layout';
 import img1 from "../../components/images/bcg1.jpg";
 import { handleLogin } from './../../services/authService';
-import {
-  Animate,
-  initTE,
-} from "tw-elements";
+
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -15,18 +12,14 @@ const Login = () => {
   const registrationform = async (e) => {
     return handleLogin(e, email, password);
   };
-  useEffect(() => {
-    initTE({ Animate });
-  }, []);
+  
 
   return (
     <Layout>
       <div className="bg-cover w-screen h-screen" style={{ backgroundImage: `url(${img1})` }}>
         <form onSubmit={registrationform} >
           <div className="flex justify-center items-center">
-            <div data-te-animation-init
-              data-te-animation-reset="true"
-              data-te-animation="[slide-right_1s_ease-in-out]"
+            <div 
             >
               <div className="bg-white text-black h-[400px] w-[400px] mt-20 text-center p-10 rounded-lg py-[16%]">
                 <div className="mb-4 font-bold text-xl">Please Fill The Login Form</div>

@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { userLogin,userRegister,getCurrentUser} from './authAction';
+import { userLogin, userRegister, getCurrentUser, updateUser } from './authAction';
 
 
 const token = localStorage.getItem("token") ? localStorage.getItem("token") : null;
-const user  = localStorage.getItem("user") ? localStorage.getItem("user") : null;
+const user = localStorage.getItem("user") ? localStorage.getItem("user") : null;
 
 const initialState = {
   loading: false,
@@ -56,6 +56,22 @@ const authSlice = createSlice({
       state.user = payload.user;
     });
     builder.addCase(getCurrentUser.rejected, (state, { payload }) => {
+      state.loading = false;
+      state.error = payload;
+    });
+
+    // update user profile users
+    builder.addCase(updateUser.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    });
+    builder.addCase(updateUser.fulfilled, (state, { payload }) => {
+      state.loading = false;
+      if (payload && payload.user) {
+        state.user = payload.user;
+      }
+    });
+    builder.addCase(updateUser.rejected, (state, { payload }) => {
       state.loading = false;
       state.error = payload;
     });

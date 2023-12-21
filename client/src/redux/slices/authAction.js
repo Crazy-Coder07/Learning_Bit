@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 
 export const userLogin = createAsyncThunk(
   "auth/login",
-  async ({email, password }, { rejectWithValue }) => {
+  async ({ email, password }, { rejectWithValue }) => {
     try {
       const { data } = await API.post("/auth/login", { email, password });
       //store token
@@ -19,7 +19,7 @@ export const userLogin = createAsyncThunk(
       return data;
     } catch (error) {
       if (error.response && error.response.data.message) {
-         toast.error(error.response.data.message);
+        toast.error(error.response.data.message);
         return rejectWithValue(error.response.data.message);
       } else {
         toast.error(error.message)
@@ -33,9 +33,9 @@ export const userLogin = createAsyncThunk(
 // here userRegister are actions
 export const userRegister = createAsyncThunk(
   "auth/register",
-  async ({ name,email,password,phone,address},{ rejectWithValue }) => {
+  async ({ name, email, password, phone, address }, { rejectWithValue }) => {
     try {
-      const { data } = await API.post("/auth/register", {name,email,password,phone,address});
+      const { data } = await API.post("/auth/register", { name, email, password, phone, address });
       if (data?.success) {
         toast.success("User Registerd Successfully");
         window.location.replace("/login");
@@ -58,7 +58,7 @@ export const getCurrentUser = createAsyncThunk(
   "auth/getCurrentUser",
   async ({ rejectWithValue }) => {
     try {
-      const {data}= await API.get("/auth/current-user");
+      const { data } = await API.get("/auth/current-user");
       if (data?.success) {
         return data;
       }
@@ -67,6 +67,29 @@ export const getCurrentUser = createAsyncThunk(
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
       } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);
+
+
+export const updateUser = createAsyncThunk(
+  "auth/updateUser",
+  async (data, { rejectWithValue }) => {
+    console.log("updated data", data);
+    try {
+      const {response}  = await API.put('/auth/profile-updateprofile', { data })
+        toast.success("Profile updated successfully");
+        window.location.replace("/profile");
+        return response.data;
+    } catch (error) {
+      console.log(error);
+      if (error.response && error.response.response.message) {
+        toast.error(error.response.response.message)
+        return rejectWithValue(error.response.response.message);
+      } else {
+        toast.error(error.message)
         return rejectWithValue(error.message);
       }
     }

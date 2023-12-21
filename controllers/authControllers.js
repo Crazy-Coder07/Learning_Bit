@@ -116,6 +116,31 @@ exports.currentuserControllers = async (req, res) => {
 
 // update profile
 exports.updateprofileControllers = async (req, res) => {
-     
-  };
+    try {
+        const { data } = req.body;
+        
+        const updatedProfile = await userModel.findOneAndUpdate(
+            { email: data.email },
+            { $set: data },
+            { new: true } 
+        );
+        if (!updatedProfile) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found",
+            });
+        }
+        res.status(200).json({
+            success: true,
+            message: "User profile updated successfully",
+            data: updatedProfile,
+        });
+    } catch (error) {
+        res.status(500).send({
+            success: false,
+            message: "Error in updating user profile",
+            error,
+        });
+    }
+};
   
