@@ -14,6 +14,10 @@ import PublicRoute from './components/Routes/publicRoute';
 import HomeInstructor from './pages/instructor/HomeInstructor';
 import ApplyInstructor from './pages/instructor/ApplyInstructor';
 import Updateprofile from './pages/updateprofile';
+import Blog from './pages/blog';
+import Askdoubt from './pages/Askdoubt';
+import Chatbot from './pages/chatbot';
+import Faq from './pages/faq';
 
 function App() {
   return (
@@ -32,6 +36,10 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/privecy" element={<Privecy />} />
+        <Route path="/blogs" element={<Blog/>} />
+        <Route path="/ask-doubt" element={<Askdoubt/>} />
+        <Route path="/aadi-chatbot" element={<Chatbot/>} />
+        <Route path="/faq" element={<Faq/>} />
         <Route path="*" element={<Pagenotfound />} />
       </Routes>
     </>
