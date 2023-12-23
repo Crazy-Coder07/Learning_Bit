@@ -78,12 +78,13 @@ export const getCurrentUser = createAsyncThunk(
 
 export const updateUser = createAsyncThunk(
   "auth/updateUser",
-  async (data, { rejectWithValue }) => {
-    console.log("updated data", data);
+  async ({name,email,password,phone,address,image}, { rejectWithValue }) => {
+    console.log("updated data", {name,email,password,phone,address,image});
     try {
-      const {response}  = await API.put('/auth/profile-updateprofile', { data })
+      const {response}  = await API.put('/auth/profile-updateprofile',{name,email,password,phone,address,image},{headers: { "Content-Type": "multipart/form-data"}})
         toast.success("Profile updated successfully");
         window.location.replace("/profile");
+
         return response.data;
     } catch (error) {
       console.log(error);

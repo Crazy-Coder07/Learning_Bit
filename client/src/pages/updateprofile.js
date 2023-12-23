@@ -2,29 +2,33 @@ import React, { useEffect, useState } from 'react';
 import Layout from '../components/Layout/Layout';
 import toast from "react-hot-toast";
 import { useSelector,useDispatch} from "react-redux";
-import { useNavigate } from 'react-router-dom';
 import { updateUser } from '../redux/slices/authAction';
 
 const Updateprofile = () => {
     const { user } = useSelector((state) => state.auth);
-    const navigate=useNavigate();
     const dispatch=useDispatch();
 
-    const [updatedData, setUpdatedData] = useState({});
+
+
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    const [address, setAddress] = useState('');
+    const [image,setImage] = useState('');
+    const [password, setPassword] = useState('');
 
     useEffect(()=>{
-         setUpdatedData(user)
+        setName(user.name);
+        setEmail(user.email);
+        setPhone(user.phone);
+        setAddress(user.address);
+        setPassword(user.password);
     },[user])
 
-    const newData=(e)=>{
-        setUpdatedData({...updatedData,[e.target.name]: e.target.value })
-    }
     
-    console.log(updatedData)
     const handleUpdate =async(e)=>{
          e.preventDefault()
-         await dispatch(updateUser(updatedData));
-         toast.success("profile updated successfully");
+         await dispatch(updateUser({name,email,password,phone,address,image}));
     }
 
     return (
@@ -37,8 +41,8 @@ const Updateprofile = () => {
                         <input
                             type="text"
                             name="name"
-                            value={updatedData && updatedData.name}
-                            onChange={newData}
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
                             className='border-b-4 border-indigo-600 ml-5'
                         />
                     </div>
@@ -47,7 +51,7 @@ const Updateprofile = () => {
                         <input
                             type="email"
                             name="email"
-                            value={updatedData && updatedData.email}
+                            value={email}
                             disabled
                             className='border-b-4 border-indigo-600 ml-5'
                         />
@@ -57,8 +61,8 @@ const Updateprofile = () => {
                         <input
                             type="text"
                             name="phone"
-                            value={updatedData && updatedData.phone}
-                            onChange={newData}
+                            value={phone}
+                            onChange={(e) => setPhone(e.target.value)}
                             className='border-b-4 border-indigo-600 ml-5'
                         />
                     </div>
@@ -68,8 +72,18 @@ const Updateprofile = () => {
                         <input
                             type="text"
                             name="address"
-                            value={updatedData && updatedData.address}
-                            onChange={newData}
+                            value={address}
+                            onChange={(e) => setAddress(e.target.value)}
+                            className='border-b-4 border-indigo-600 ml-5'
+                        />
+                    </div>
+
+                    <div className ="mb-5">
+                        <label className ="form-label"> </label>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => setImage(e.target.files[0])}
                             className='border-b-4 border-indigo-600 ml-5'
                         />
                     </div>

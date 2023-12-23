@@ -33,6 +33,6 @@ router.post('/login',loginController)
 router.get('/current-user',authmiddleware,currentuserControllers)
 
 // update current user
-router.put('/profile-updateprofile',authmiddleware,updateprofileControllers)
+router.put('/profile-updateprofile',authmiddleware,upload.single("image"),updateprofileControllers)
 
 module.exports =router;

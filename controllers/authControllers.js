@@ -10,9 +10,6 @@ exports.registerController = async (req, res) => {
         const imageName = req.file ? req.file.filename : null;
 
         if (!imageName) {
-            console.log(req.photo)
-            console.log(req.file)
-            console.log(req.body)
             return res.status(400).send({
                 success: false,
                 message: "Error uploading image",
@@ -130,25 +127,45 @@ exports.currentuserControllers = async (req, res) => {
 // update profile
 exports.updateprofileControllers = async (req, res) => {
     try {
-        const { data } = req.body;
-        
-        const updatedProfile = await userModel.findOneAndUpdate(
-            { email: data.email },
-            { $set: data },
-            { new: true } 
-        );
+        const { email, name, phone, address } = req.body;
+        const imageName = req.file ? req.file.filename : null;
+
+        if (!imageName) {
+            console.log("Error in uploading photo");
+            console.log(req.file);
+            console.log(req.body);
+            return res.status(401).send({
+                success: false,
+                message: "Error uploading image",
+            });
+        }
+
+        // Find the user by email
+        const updatedProfile = await userModel.findOne({ email });
+
         if (!updatedProfile) {
             return res.status(404).json({
                 success: false,
                 message: "User not found",
             });
         }
+
+        // Update only the specified fields
+        updatedProfile.name = name || updatedProfile.name;
+        updatedProfile.phone = phone || updatedProfile.phone;
+        updatedProfile.address = address || updatedProfile.address;
+        updatedProfile.photo = imageName || updatedProfile.photo;
+
+        // Save the updated user profile
+        await updatedProfile.save();
+
         res.status(200).json({
             success: true,
             message: "User profile updated successfully",
             data: updatedProfile,
         });
     } catch (error) {
+        console.log(error);
         res.status(500).send({
             success: false,
             message: "Error in updating user profile",
@@ -156,4 +173,5 @@ exports.updateprofileControllers = async (req, res) => {
         });
     }
 };
+
   
