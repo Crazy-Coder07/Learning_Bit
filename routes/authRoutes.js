@@ -6,13 +6,25 @@ const {
     updateprofileControllers,
 } = require('../controllers/authControllers');
 const authmiddleware = require("../middlewares/authMiddleware");
-const formidableMiddleware = require('express-formidable');
+const multer = require("multer");
+const path = require('path');
 
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, path.join(__dirname,'../utils'))
+    },
+    filename: function (req, file, cb) {
+      const uniqueSuffix = Date.now();
+      cb(null, uniqueSuffix + file.originalname);
+    },
+});
+  
+const upload = multer({ storage: storage });
 
 const router= express.Router();
 
 // register routes
-router.post('/register',registerController)
+router.post('/register',upload.single("image"),registerController)
 
 // login routes
 router.post('/login',loginController)

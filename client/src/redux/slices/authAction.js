@@ -33,9 +33,11 @@ export const userLogin = createAsyncThunk(
 // here userRegister are actions
 export const userRegister = createAsyncThunk(
   "auth/register",
-  async ({ name, email, password, phone, address }, { rejectWithValue }) => {
+  async ({ name, email, password, phone, address,image }, { rejectWithValue }) => {
     try {
-      const { data } = await API.post("/auth/register", { name, email, password, phone, address });
+      const { data } = await API.post("/auth/register", { name, email, password, phone, address,image},{
+        headers: { "Content-Type": "multipart/form-data" },
+      });
       if (data?.success) {
         toast.success("User Registerd Successfully");
         window.location.replace("/login");

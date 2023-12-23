@@ -33,8 +33,8 @@ const userSchema = new mongoose.Schema(
       required: [true, "address is required"],
     },
     photo: {
-      data: Buffer,
-      contentType: String,
+      type: String,
+      required: [true, "photo is required"],
     },
   },
   { timestamps: true }

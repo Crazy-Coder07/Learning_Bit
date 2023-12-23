@@ -14,8 +14,10 @@ connectDb();
 
 // middlware 
 app.use(express.json());
+app.use(express.urlencoded({extended: true}))
 app.use(cors());
 app.use(morgan("dev"));
+app.use(express.static('./utils'))
 
 // auth 
 app.use("/api/v1/auth",userRoutes);

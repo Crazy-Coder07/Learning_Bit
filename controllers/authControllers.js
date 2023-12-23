@@ -7,6 +7,18 @@ const fs = require("fs");
 exports.registerController = async (req, res) => {
     try {
         const { name, email, password, phone, address } = req.body;
+        const imageName = req.file ? req.file.filename : null;
+
+        if (!imageName) {
+            console.log(req.photo)
+            console.log(req.file)
+            console.log(req.body)
+            return res.status(400).send({
+                success: false,
+                message: "Error uploading image",
+            });
+        }
+
         if (!name || !email || !password || !phone || !address) {
             return res.status(400).send({
                 success: false,
@@ -28,7 +40,7 @@ exports.registerController = async (req, res) => {
         req.body.password = hashedPassword;
 
         // saving to database
-        user = new userModel(req.body);
+        user = new userModel({name, email, password:hashedPassword,phone,address,photo:imageName});
         await user.save();
         return res.status(201).send({
             success: true,
@@ -37,6 +49,7 @@ exports.registerController = async (req, res) => {
         });
     }
     catch (error) {
+        console.log(error);
         res.status(500).send({
             success: false,
             message: "Error In Registration API",

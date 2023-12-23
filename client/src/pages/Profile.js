@@ -7,12 +7,14 @@ const Profile = () => {
 
     const { user } = useSelector((state) => state.auth);
 
+    console.log(user);
+
 
     return (
         <Layout>
             <div className='flex flex-row justify-center mt-[5%]'>
                 <div className=' mt-[3%]'>
-                    <img src={user.photo} className="w-60 h-60 p-10 rounded-full bg-lime-100" alt="image not found" />
+                    <img src={`http://localhost:8080/${user.photo}`} className="w-60 h-60 p-2 rounded-full bg-lime-100" alt="image not found" />
                     <p className='text-center mt-3'>Profile Photo</p>
                 </div>
                 <div className='ml-[7%] bg-slate-200 rounded-md p-12'>

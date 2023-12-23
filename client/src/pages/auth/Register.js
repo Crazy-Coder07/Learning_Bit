@@ -10,9 +10,14 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
+  const [image,setImage] = useState('');
 
   const registrationform = async (e) => {
-    return handleRegister(e, name, email, password, phone, address);
+
+    // const formData = new FormData();
+    // formData.append("image",image);
+
+    return handleRegister(e,name,email,password,phone,address,image);
   };
 
   return (
@@ -93,6 +98,18 @@ const Register = () => {
                   onChange={(e) => setAddress(e.target.value)}
                   className="border-green-400 border-2 rounded-lg p-2 w-full"
                   placeholder="Enter address name"
+                />
+              </div>
+              <div>
+                <label htmlFor="address" className="block font-bold mb-1">
+                  Profile Photo:
+                </label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => setImage(e.target.files[0])}
+                  className="border-green-400 border-2 rounded-lg p-2 w-full"
+                  placeholder="Enter Profile Photo"
                 />
               </div>
               <div className="h-10 w-25 border-white-400 border-2 rounded-lg p-1 bg-green-400 mt-4">

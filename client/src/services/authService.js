@@ -16,16 +16,16 @@ export const handleLogin = (e, email, password) => {
   }
 };
 
-export const handleRegister = (e,name,email,password,phone,address) => {
+export const handleRegister = (e,name,email,password,phone,address,image) => {
   e.preventDefault();
   try {
-    if (!name || !email || !password ||!phone || !address) {
+    if (!name || !email || !password ||!phone || !address || !image) {
       return toast.error("Please Privde All Feilds");
     }
     if(password.length<4){
       return toast.error("Password must be at least 4 character long");
     }
-    store.dispatch(userRegister({name,email,password,phone,address}));
+    store.dispatch(userRegister({name,email,password,phone,address,image}));
   } catch (error) {
     toast.error("Something Went Wrong");
     console.log(error);
